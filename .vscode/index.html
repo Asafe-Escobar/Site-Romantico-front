@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor</title>
+    <style>
+        /* Cores e estilos gerais */
+        :root {
+            --cor-principal: #dd0505;
+            --cor-secundaria: #f9f7f7;
+            --cor-texto: #2b2b2b;
+            --cor-destaque: #ffd1dc;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-secundaria);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #FF1493, #FF69B4, #FFB6F9);
+
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+        
+        /* Navegação */
+        nav {
+            background-color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav a {
+            color: var(--cor-principal);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        nav a:hover {
+            background-color: var(--cor-destaque);
+            color: var(--cor-texto);
+        }
+        
+        /* Seções */
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section h2 {
+            text-align: center;
+            color: var(--cor-principal);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--cor-destaque);
+            margin: 0.5rem auto;
+        }
+        
+        /* Introdução */
+        .intro {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Galeria de fotos */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .foto-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            aspect-ratio: 3/4;
+        }
+        
+        .foto-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .foto-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .foto-legenda {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 0.8rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .foto-item:hover .foto-legenda {
+            transform: translateY(0);
+        }
+        
+        /* Declarações de amor */
+        .declaracoes {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .declaracao {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .declaracao::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: var(--cor-destaque);
+            opacity: 0.7;
+        }
+        
+        .declaracao p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .declaracao .autor {
+            text-align: right;
+            font-weight: bold;
+            color: var(--cor-principal);
+        }
+        
+        /* Linha do tempo */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--cor-destaque);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .evento {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+        
+        .evento-esquerda {
+            left: 0;
+        }
+        
+        .evento-direita {
+            left: 50%;
+        }
+        
+        .evento-conteudo {
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .evento::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--cor-principal);
+            border: 4px solid var(--cor-destaque);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .evento-esquerda::after {
+            right: -10px;
+        }
+        
+        .evento-direita::after {
+            left: -10px;
+        }
+        
+        .evento h3 {
+            color: var(--cor-principal);
+            margin-top: 0;
+        }
+        
+        .evento .data {
+            color: #888;
+            font-style: italic;
+        }
+        
+        /* Formulário de mensagens */
+        .formulario-mensagem {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .formulario-grupo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .formulario-grupo label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--cor-principal);
+        }
+        
+        .formulario-grupo input,
+        .formulario-grupo textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .formulario-grupo textarea {
+            min-height: 150px;
+        }
+        
+        button {
+            background-color: var(--cor-principal);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #ff5151;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--cor-principal);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        /* Coração flutuante */
+        .coracao {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--cor-principal);
+            animation: pulsar 1.5s infinite;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        @keyframes pulsar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .evento {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0;
+            }
+            
+            .evento-direita {
+                left: 0;
+            }
+            
+            .evento-esquerda::after, .evento-direita::after {
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Coração flutuante -->
+    <div class="coracao" title="Te amo!">❤️</div>
+    
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Nosso Amor</h1>
+        <p class="subtitle">Uma história que começou com você e eu, e se tornou nós</p>
+        <p class="subtitle">KAMILLE E ASAFE</p>
+       
+    </header>
+    
+    <!-- Navegação -->
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#nossa-historia">Nossa História</a>
+        <a href="#galeria">Fotos</a>
+        <a href="#declaracoes">Declarações</a>
+        <a href="#momentos">Momentos</a>
+        <a href="#mensagem">Mensagem</a>
+    </nav>
+    
+    <!-- Seção Inicial -->
+    <section id="inicio">
+        <div class="intro">
+            <h2>Bem-vinda ao nosso cantinho virtual</h2>
+            <p>Meu amor, criei este espaço para celebrar nossa história e expressar todo o amor que sinto por você. Aqui você encontrará nossas memórias mais preciosas, declarações de amor e momentos inesquecíveis que construímos juntos. Este site é um presente do meu coração para o seu, um lugar para voltarmos sempre que quisermos relembrar o quanto somos especiais um para o outro.</p>
+        </div>
+    </section>
+    
+    <!-- Seção Nossa História -->
+    <section id="nossa-historia">
+        <h2>Nossa História</h2>
+        <div class="timeline">
+            <!-- Evento 1 -->
+            <div class="evento evento-esquerda">
+                <div class="evento-conteudo">
+                    <h3>Quando nos conhecemos</h3>
+                    <p class="data">24/09/2022</p>
+                    <p>Fizemos uma viagem da banda "melodia do alto" não nos conheciamos eu odiava ela (asafe) e ao mesmo tempo era apaixonado,(kamille) Achava que ele tinha todos os defeitos do mundo e era a pessoa mais improvavel de me apaixonar. E assim começamos a historia mais louca e apaixonante</p>
+                </div>
+            </div>
+            
+            <!-- Evento 2 -->
+            <div class="evento evento-direita">
+                <div class="evento-conteudo">
+                    <h3>Nosso primeiro encontro</h3>
+                    <p class="data">13/02/2023</p>
+                    <p>Foi na inteção de ser apenas um almoço, fomos em um Mcdonalds no shopping,(não tinhamos opção) mas foi nesse simples encontro em que nossas almas se encontraram </p>
+                </div>
+            </div>
+            
+            <!-- Evento 3 -->
+            <div class="evento evento-esquerda">
+                <div class="evento-conteudo">
+                    <h3>Nosso primeiro beijo</h3>
+                    <p class="data">13/02/2023</p>
+                    <p>Estavamos na fila do MCdonalds, quando eu(asafe) fui comprar um bombom na cacau show, e quando para agradecer ela veio me abraçar e me deu um selinho, eu fiquei sem reação, porque não esperava que aquela menina fofa iria encostar na minha boca com a boca dela, AMEIIIIIIIIIIIIIIIIIIIIIIIIIII</p>
+                </div>
+            </div>
+            
+            <!-- Evento 4 -->
+            <div class="evento evento-direita">
+                <div class="evento-conteudo">
+                    <h3>Pedido de namoro</h3>
+                    <p class="data">13/02/2023</p>
+                    <p>Simplesmente não teve pedido, Começamos do primeiro Encontro (EMOCIONADOS).</p>
+                </div>
+            </div>
+            
+            <!-- Evento 5 -->
+            <div class="evento evento-esquerda">
+                <div class="evento-conteudo">
+                    <h3>Nossa primeira viagem</h3>
+                    <p class="data">08/07/2023</p>
+                    <p>Fizemos uma viagem para piracuruca com a banda, e foi magico,se apaixonamos mais ainda nessa viagem.</p>
+                </div>
+            </div>
+            
+            <!-- Evento 6 -->
+            <div class="evento evento-direita">
+                <div class="evento-conteudo">
+                    <h3>Pedido de casamento</h3>
+                    <p class="data">Todo dia</p>
+                    <p>Peço todo dia, tantas vezes que nem lembro quando foi a primeira vez.</p>
+                </div>
+            </div>
+            
+            <!-- Evento 7 -->
+            <div class="evento evento-esquerda">
+                <div class="evento-conteudo">
+                    <h3>Nosso casamento</h3>
+                    <p class="data">UM DIA</p>
+                    <p>Deus está provendo, meados do incio de 2027 pela fé, ou fim de 2026.</p>
+                </div>
+            </div>
+            
+            <!-- Adicione mais eventos conforme necessário -->
+        </div>
+    </section>
+    
+    <!-- Seção Galeria de Fotos -->
+    <section id="galeria">
+        <h2>Nossas Fotos</h2>
+        <div class="galeria">
+            <!-- Foto 1 -->
+            <div class="foto-item">
+                <img src="\primeira.foto.jpg" alt="Foto especial 1">
+                <div class="foto-legenda">Nossa primeira foto juntos</div>
+            </div>
+            
+            <!-- Foto 2 -->
+            <div class="foto-item">
+                <img src="\natal.jpg" alt="Foto especial 2">
+                <div class="foto-legenda">Nosso NATAL</div>
+            </div>
+            
+            <!-- Foto 3 -->
+            <div class="foto-item">
+                <img src="\aniversario.namoro.jpg" alt="Foto especial 3">
+                <div class="foto-legenda">Nosso aniversário de namoro</div>
+            </div>
+            
+            <!-- Foto 4 -->
+            <div class="foto-item">
+                <img src="/shopping.jpg" alt="Foto especial 4">
+                <div class="foto-legenda">Dengo</div>
+            </div>
+            
+            <!-- Foto 5 -->
+            <div class="foto-item">
+                <img src="\bem.kkk.jpg" alt="Foto especial 5">
+                <div class="foto-legenda">Nosso Jeitinho</div>
+            </div>
+            
+            <!-- Foto 6 -->
+            <div class="foto-item">
+                <img src="\altos.jpg" alt="Foto especial 6">
+                <div class="foto-legenda">Momentos felizes juntos</div>
+            </div>
+            
+            <!-- Adicione mais fotos conforme necessário -->
+        </div>
+    </section>
+    
+    <!-- Seção Declarações -->
+    <section id="declaracoes">
+        <h2>Declarações de Amor</h2>
+        <div class="declaracoes">
+            <!-- Declaração 1 -->
+            <div class="declaracao">
+                <p>“O amor é a única coisa que somos capazes de perceber que transcende o tempo e o espaço.”
+                    .</p>
+                <div class="autor">- Seu amor</div>
+            </div>
+            
+            <!-- Declaração 2 -->
+            <div class="declaracao">
+                <p>“O tempo é relativo, ele pode esticar e encolher... mas o amor, o amor é constante.”</p>
+                <div class="autor">- Seu amor</div>
+            </div>
+            
+            <!-- Declaração 3 -->
+            <div class="declaracao">
+                <p>“Achei aquele a quem ama a minha alma; agarrei-me a ele e não o deixei ir.”
+                    📖 Cântico dos Cânticos 3:4
+                    
+                    </p>
+                <div class="autor">- Seu amor</div>
+            </div>
+            
+            <!-- Adicione mais declarações conforme necessário -->
+        </div>
+    </section>
+    
+    <!-- Seção Momentos Especiais -->
+    <section id="momentos">
+        <h2>Momentos Especiais</h2>
+        <div class="galeria">
+            <!-- Momento 1 -->
+            <div class="foto-item">
+                <img src="\exposição.jpg" alt="Momento especial 1">
+                <div class="foto-legenda">Primeira exposição de Arte</div>
+            </div>
+            
+            <!-- Momento 2 -->
+            <div class="foto-item">
+                <img src="\primeiro.presente.jpg" alt="Momento especial 2">
+                <div class="foto-legenda">Primeiro presente</div>
+            </div>
+            
+            <!-- Momento 3 -->
+            <div class="foto-item">
+                <img src="\hospital.jpg" alt="Momento especial 3">
+                <div class="foto-legenda">Internação</div>
+            </div>
+            
+            <!-- Adicione mais momentos conforme necessário -->
+        </div>
+    </section>
+    
+    <!-- Seção Mensagem -->
+    <section id="mensagem">
+        <h2>Deixe Uma Mensagem</h2>
+        <div class="formulario-mensagem">
+            <form id="form-mensagem">
+                <div class="formulario-grupo">
+                    <label for="nome">Seu Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                
+                <div class="formulario-grupo">
+                    <label for="mensagem">Sua Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" required></textarea>
+                </div>
+                
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Rodapé -->
+    <footer>
+        <p>❤️ Feito com muito amor para o amor da minha vida ❤️</p>
+        <p>&copy; 2025 - Nosso Amor</p>
+    </footer>
+    
+    <script>
+        // Animação suave ao clicar nos links do menu
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Coração flutuante - surpresa ao clicar
+        document.querySelector('.coracao').addEventListener('click', function() {
+            alert('Eu te amo mais a cada dia! ❤️');
+        });
+        
+        // Formulário de mensagem
+        document.getElementById('form-mensagem').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const mensagem = document.getElementById('mensagem').value;
+            
+            // Aqui você poderia implementar o envio da mensagem para um email ou banco de dados
+            // Como isso exigiria backend, vamos apenas mostrar um alerta de confirmação
+            
+            alert(`Obrigado pela sua mensagem, ${nome}! ❤️`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>

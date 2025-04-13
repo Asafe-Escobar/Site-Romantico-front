@@ -1,0 +1,365 @@
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+/* Cores e estilos gerais */
+:root {
+    --cor-principal: #ff6b6b;
+    --cor-secundaria: #f9f7f7;
+    --cor-texto: #2b2b2b;
+    --cor-destaque: #ffd1dc;
+}
+
+/* Cabeçalho */
+header {
+    background: linear-gradient(135deg, var(--cor-principal), #ff9e9e);
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+/* Navegação */
+nav {
+    background-color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: var(--cor-principal);
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+nav a:hover {
+    background-color: var(--cor-destaque);
+    color: var(--cor-texto);
+}
+
+/* Seções */
+section {
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section h2 {
+    text-align: center;
+    color: var(--cor-principal);
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    position: relative;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: var(--cor-destaque);
+    margin: 0.5rem auto;
+}
+
+/* Introdução */
+.intro {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.intro p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Galeria de fotos */
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.foto-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    aspect-ratio: 3/4;
+}
+
+.foto-item:hover {
+    transform: translateY(-5px);
+}
+
+.foto-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.foto-legenda {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 0.8rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.foto-item:hover .foto-legenda {
+    transform: translateY(0);
+}
+
+/* Declarações de amor */
+.declaracoes {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.declaracao {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.declaracao::before {
+    content: '"';
+    font-size: 5rem;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    color: var(--cor-destaque);
+    opacity: 0.7;
+}
+
+.declaracao p {
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.declaracao .autor {
+    text-align: right;
+    font-weight: bold;
+    color: var(--cor-principal);
+}
+
+/* Linha do tempo */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--cor-destaque);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+.evento {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.evento-esquerda {
+    left: 0;
+}
+
+.evento-direita {
+    left: 50%;
+}
+
+.evento-conteudo {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.evento::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--cor-principal);
+    border: 4px solid var(--cor-destaque);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.evento-esquerda::after {
+    right: -10px;
+}
+
+.evento-direita::after {
+    left: -10px;
+}
+
+.evento h3 {
+    color: var(--cor-principal);
+    margin-top: 0;
+}
+
+.evento .data {
+    color: #888;
+    font-style: italic;
+}
+
+/* Formulário de mensagens */
+.formulario-mensagem {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-grupo {
+    margin-bottom: 1.5rem;
+}
+
+.formulario-grupo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--cor-principal);
+}
+
+.formulario-grupo input,
+.formulario-grupo textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.formulario-grupo textarea {
+    min-height: 150px;
+}
+
+button {
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff5151;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--cor-principal);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+/* Coração flutuante */
+.coracao {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--cor-principal);
+    animation: pulsar 1.5s infinite;
+    cursor: pointer;
+    z-index: 100;
+}
+
+@keyframes pulsar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .evento {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        left: 0;
+    }
+    
+    .evento-direita {
+        left: 0;
+    }
+    
+    .evento-esquerda::after, .evento-direita::after {
+        left: 15px;
+    }
+}
+</body>
+</html>
